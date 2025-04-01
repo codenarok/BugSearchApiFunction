@@ -45,7 +45,6 @@ public class SearchFunction
 
             var options = new SearchOptions
             {
-                Size = 3,
                 Select = { "BugID", "SubmissionID", "RequirementNoFull", "BugType" }
             };
 
