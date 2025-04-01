@@ -54,7 +54,8 @@ public class SearchFunction
             var documents = new List<Dictionary<string, object>>();
             await foreach (var result in results.Value.GetResultsAsync())
             {
-                documents.Add((Dictionary<string, object>)result.Document);
+                var document = JsonSerializer.Deserialize<Dictionary<string, object>>(result.Document.ToString());
+                documents.Add(document);
             }
 
             var json = JsonSerializer.Serialize(documents);
