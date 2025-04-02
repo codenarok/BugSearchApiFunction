@@ -23,11 +23,12 @@ namespace AzureSearchApi
             _logger = loggerFactory.CreateLogger<SearchFunction>();
         }
 
+        // Changed from AuthorizationLevel.Anonymous to AuthorizationLevel.Function
         [Function("SearchFunction")]
         public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search")] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "search")] HttpRequestData req)
         {
-            var query = System.Web.HttpUtility.ParseQueryString(req.Url.Query).Get("query");
+            var query = HttpUtility.ParseQueryString(req.Url.Query).Get("query");
 
             if (string.IsNullOrWhiteSpace(query))
             {
