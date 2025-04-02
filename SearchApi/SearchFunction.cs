@@ -26,7 +26,7 @@ namespace AzureSearchApi
         // Changed from AuthorizationLevel.Anonymous to AuthorizationLevel.Function
         [Function("SearchFunction")]
         public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "search")] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "search")] HttpRequestData req)
         {
             var query = HttpUtility.ParseQueryString(req.Url.Query).Get("query");
 
